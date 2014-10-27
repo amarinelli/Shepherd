@@ -576,7 +576,7 @@ function setupHandlebarsHelpers() {
     // If the array is empty, the output is the N/A value.
     Handlebars.registerHelper('generateTable', generateTable);
 
-    // ifequal: Block-helper that executes the inner-block if the two arguments test as strict equal (===). 
+    // ifequal: Block-helper that executes the inner-block if the two arguments test as strict equal (===).
     // This also supports else blocks.
     Handlebars.registerHelper('ifequal', ifequal);
 
@@ -714,10 +714,12 @@ function addLocalStorage(serverUrl) {
             url_localStorageList.push(serverUrl);
             localStorage.setItem("AGS_servicesUrl", JSON.stringify(url_localStorageList));
         } else {
-            if (JSON.parse(localStorage["AGS_servicesUrl"].indexOf(serverUrl)) == -1 && list_defaultSampleServers.indexOf(serverUrl) == -1) {
-                url_localStorageList = JSON.parse(localStorage["AGS_servicesUrl"]);
-                url_localStorageList.push(serverUrl);
-                localStorage.setItem("AGS_servicesUrl", JSON.stringify(url_localStorageList));
+            if (localStorage["AGS_servicesUrl"]) {
+              if (JSON.parse(localStorage["AGS_servicesUrl"].indexOf(serverUrl)) == -1 && list_defaultSampleServers.indexOf(serverUrl) == -1) {
+                  url_localStorageList = JSON.parse(localStorage["AGS_servicesUrl"]);
+                  url_localStorageList.push(serverUrl);
+                  localStorage.setItem("AGS_servicesUrl", JSON.stringify(url_localStorageList));
+              }
             }
         }
     }
