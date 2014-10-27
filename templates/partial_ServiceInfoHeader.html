@@ -18,14 +18,14 @@
                   class="bstooltip glyphicon glyphicon-new-window infoHeaderIcon"></span>
         </a>
 
-        {{#ifEqualToAny itemType "Server"}}
+        {{#ifequal itemType "Server"}}
         <a href="#" class="no-underline" data-toggle="modal" data-target="#loginDialog">
             <span title="Login to Services Directory"
                   data-toggle="tooltip"
                   data-placement="top"
                   class="bstooltip glyphicon glyphicon-user infoHeaderIcon"></span>
         </a>
-        {{/ifEqualToAny}}
+        {{/ifequal}}
 
         {{#ifEqualToAny itemType "MapServer" "FeatureServer" "ImageServer" "Layer"}}
         <a href="mapPreview.html?serviceUrl={{itemUrl}}&serviceType={{itemType}}" target="_blank" class="no-underline">
@@ -103,18 +103,18 @@
                         data-dismiss="modal">
                     <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                 </button>
-                <h4 class="modal-title">Login: {{itemName}}</h4>
-                <div class="modal-body">
-                    <div class="input-group">
-                      <span class="input-group-addon">></span>
-                      <input id='loginUsername' type="text" class="form-control" placeholder="Username">
-                    </div><br>
-                    <div class="input-group">
-                      <span class="input-group-addon">></span>
-                      <input id='loginPassword' type="password" class="form-control" placeholder="Username">
-                    </div><br>
-                    <button id="btnLoginServer" type="button" class="btn btn-default" onclick="btnLoginServer_Click(loginUsername.value, loginPassword.value)">Login</button>
-                </div>
+                <h4 class="modal-title">{{itemName}} REST API Login</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                  <span class="input-group-addon">></span>
+                  <input id='loginUsername' type="text" class="form-control" placeholder="Username">
+                </div><br>
+                <div class="input-group">
+                  <span class="input-group-addon">></span>
+                  <input id='loginPassword' type="password" class="form-control" placeholder="Username">
+                </div><br>
+                <button id="btnLoginServer" type="button" class="btn btn-default" onclick="btnLoginServer_Click(loginUsername.value, loginPassword.value)">Login</button>
             </div>
         </div>
     </div>
