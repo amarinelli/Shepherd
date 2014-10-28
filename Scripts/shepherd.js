@@ -211,9 +211,36 @@ function btnGetServerInfo_Click(serverUrl) {
             displayItemInfo(treeObject.get_node(serverNodeName).data);
 
             // Local Storage
-            addLocalStorage(serverUrl);
+            addLocalStorage_Server(serverUrl);
         });
     }
+}
+
+function btnLoginServer_Click(username, password) {
+  $('.loginError').css("display", "none");
+  urlParse = $('#txtServerUrl').val().split('/');
+  url = urlParse[0] + '//' + urlParse[2] + '/' + urlParse[3] + '/tokens/generateToken';
+  data = {
+    "f": "json",
+    "username": username,
+    "password": password,
+    "client": "requestip",
+    "expiration": 60
+  }
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: data,
+    dataType: "json",
+    success: function(resp) {
+      if (!resp.error) {
+          addLocalStorage_Token(resp);
+      } else {
+        $('.loginError').fadeIn();
+        $('.loginError').css("display", "inline");
+      }
+    }
+  });
 }
 
 function displayBooleanAsImage(boolValue, trueTitle, falseTitle) {
@@ -706,7 +733,7 @@ function displayItemInfo(itemData) {
     });
 }
 
-function addLocalStorage(serverUrl) {
+function addLocalStorage_Server(serverUrl) {
     if (typeof (Storage) !== "undefined") {
 
         // check if local storage item exists
@@ -722,6 +749,12 @@ function addLocalStorage(serverUrl) {
               }
             }
         }
+    }
+}
+
+function addLocalStorage_Token(resp) {
+    if (typeof (Storage) !== "undefined") {
+        localStorage.setItem("agstoken", resp.token);
     }
 }
 

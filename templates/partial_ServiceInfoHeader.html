@@ -5,6 +5,15 @@
          class="bstooltip infoHeaderIcon"
          src="{{getItemIcon itemType '32'}}" />{{itemName}}
     <small>
+        {{#ifequal itemType "Server"}}
+        <a href="#" class="no-underline" data-toggle="modal" data-target="#loginDialog">
+            <span title="Login to Services Directory"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  class="bstooltip glyphicon glyphicon-user infoHeaderIcon"></span>
+        </a>
+        {{/ifequal}}
+
         <a href="{{itemUrl}}?f=help" target="_blank" class="no-underline">
             <span title="Help"
                   data-toggle="tooltip"
@@ -17,15 +26,6 @@
                   data-placement="top"
                   class="bstooltip glyphicon glyphicon-new-window infoHeaderIcon"></span>
         </a>
-
-        {{#ifequal itemType "Server"}}
-        <a href="#" class="no-underline" data-toggle="modal" data-target="#loginDialog">
-            <span title="Login to Services Directory"
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  class="bstooltip glyphicon glyphicon-user infoHeaderIcon"></span>
-        </a>
-        {{/ifequal}}
 
         {{#ifEqualToAny itemType "MapServer" "FeatureServer" "ImageServer" "Layer"}}
         <a href="mapPreview.html?serviceUrl={{itemUrl}}&serviceType={{itemType}}" target="_blank" class="no-underline">
@@ -115,11 +115,8 @@
                   <input id='loginPassword' type="password" class="form-control" placeholder="Username">
                 </div><br>
                 <button id="btnLoginServer" type="button" class="btn btn-default" onclick="btnLoginServer_Click(loginUsername.value, loginPassword.value)">Login</button>
+                <div class='loginError'>Login Error: Please check your credentials and try again</div>
             </div>
         </div>
     </div>
-    <script>
-        function btnLoginServer_Click(username, password) {
-        }
-    </script>
 </div>

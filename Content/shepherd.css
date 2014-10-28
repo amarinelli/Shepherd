@@ -8,9 +8,15 @@
     padding-right: 5px;
 }
 
-    .infoHeaderIcon:hover {
-        text-decoration: none;
-    }
+.infoHeaderIcon:hover {
+    text-decoration: none;
+}
+
+.loginError {
+  padding-left: 10px;
+  color: #F56472;
+  display: none;
+}
 
 .colorCircle {
     min-width: 16px;
