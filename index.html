@@ -25,6 +25,11 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
+                        <a class="btn" data-toggle="modal" data-target="#settingsDialog">
+                            <span class="glyphicon glyphicon glyphicon-cog"></span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="btn" data-toggle="modal" data-target="#aboutDialog">
                             <span class="glyphicon glyphicon-info-sign"></span>
                         </a>
@@ -63,9 +68,31 @@
         <div class="row">
             <div class="col-md-3">
                 <div id="treeDiv"></div>
+                <div id="treeMenuList" aria-hidden="true">
+                  <ul>
+                    <li><span title="Remove" data-toggle="tooltip" data-placement="top" class="bstooltip glyphicon glyphicon-remove"></span></li>
+                    <li><span title="Remember" data-toggle="tooltip" data-placement="top" class="bstooltip glyphicon glyphicon-floppy-disk"></span></li>
+                    <li><span title="Forget" data-toggle="tooltip" data-placement="top" class="bstooltip glyphicon glyphicon-floppy-remove"></span></li>
+                  </ul>
+                </div>
             </div>
             <div class="col-md-9">
                 <div id="infoPanel"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="settingsDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Settings</h4>
+                </div>
+                <div class="modal-body">
+                  <p><i>Not implemented yet<i></p>
+                  <button id="btnSaveSettings" type="button" class="btn btn-default">Save Settings</button>
+                </div>
             </div>
         </div>
     </div>
@@ -111,4 +138,3 @@
     <script src="Scripts/shepherd.js"></script>
 </body>
 </html>
-

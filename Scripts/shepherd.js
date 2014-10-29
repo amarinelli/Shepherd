@@ -217,30 +217,39 @@ function btnGetServerInfo_Click(serverUrl) {
 }
 
 function btnLoginServer_Click(username, password) {
-  $('.loginError').css("display", "none");
-  urlParse = $('#txtServerUrl').val().split('/');
-  url = urlParse[0] + '//' + urlParse[2] + '/' + urlParse[3] + '/tokens/generateToken';
-  data = {
-    "f": "json",
-    "username": username,
-    "password": password,
-    "client": "requestip",
-    "expiration": 60
-  }
-  $.ajax({
-    type: "POST",
-    url: url,
-    data: data,
-    dataType: "json",
-    success: function(resp) {
-      if (!resp.error) {
-          addLocalStorage_Token(resp);
-      } else {
-        $('.loginError').fadeIn();
-        $('.loginError').css("display", "inline");
-      }
+    $('#loginError').css("display", "none");
+    if ($('#loginUsername').val() == "" || $('#loginPassword').val() == "") {
+        $('#loginError').html("Both a username and password are required");
+        $('#loginError').fadeIn();
+        $('#loginError').css("display", "inline");
+    } else {
+
+        var urlParse = $('#txtServerUrl').val().split('/');
+        var url = urlParse[0] + '//' + urlParse[2] + '/' + urlParse[3] + '/tokens/generateToken';
+        var data = {
+          "f": "json",
+          "username": username,
+          "password": password,
+          "client": "requestip",
+          "expiration": 60
+        }
+
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: data,
+          dataType: "json",
+          success: function(resp) {
+            if (!resp.error) {
+                addLocalStorage_Token(resp);
+            } else {
+              $('#loginError').html("Login Error: Please check your credentials and try again");
+              $('#oginError').fadeIn();
+              $('#loginError').css("display", "inline");
+            }
+          }
+        });
     }
-  });
 }
 
 function displayBooleanAsImage(boolValue, trueTitle, falseTitle) {

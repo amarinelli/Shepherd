@@ -107,16 +107,41 @@
             </div>
             <div class="modal-body">
                 <div class="input-group">
-                  <span class="input-group-addon">></span>
-                  <input id='loginUsername' type="text" class="form-control" placeholder="Username">
+                  <span id="loginUserIcon" class="input-group-addon glyphicon glyphicon-user"></span>
+                  <input id='loginUsername' type="text" class="form-control" placeholder="Username" required>
                 </div><br>
                 <div class="input-group">
-                  <span class="input-group-addon">></span>
-                  <input id='loginPassword' type="password" class="form-control" placeholder="Username">
+                  <span id="loginPasswordIcon" class="input-group-addon glyphicon glyphicon-asterisk"></span>
+                  <input id='loginPassword' type="password" class="form-control" placeholder="Password" required>
                 </div><br>
                 <button id="btnLoginServer" type="button" class="btn btn-default" onclick="btnLoginServer_Click(loginUsername.value, loginPassword.value)">Login</button>
-                <div class='loginError'>Login Error: Please check your credentials and try again</div>
+                <div id='loginError' class='loginError'></div>
             </div>
         </div>
     </div>
+    <script>
+        $('#loginDialog').on('hidden.bs.modal', function () {
+            $('.loginError').css("display", "none");
+        });
+
+        $('#loginUsername').on('input', function() {
+            if ($('#loginUsername').val() != "") {
+              $('#loginUserIcon').removeClass("glyphicon-user");
+              $('#loginUserIcon').addClass("glyphicon-ok");
+            } else {
+              $('#loginUserIcon').removeClass("glyphicon-ok");
+              $('#loginUserIcon').addClass("glyphicon-user");
+            }
+        });
+
+        $('#loginPassword').on('input', function() {
+            if ($('#loginPassword').val() != "") {
+              $('#loginPasswordIcon').removeClass("glyphicon-asterisk");
+              $('#loginPasswordIcon').addClass("glyphicon-ok");
+            } else {
+              $('#loginPasswordIcon').removeClass("glyphicon-ok");
+              $('#loginPasswordIcon').addClass("glyphicon-asterisk");
+            }
+        });
+    </script>
 </div>

@@ -43,6 +43,16 @@
     padding: 1px 2px;
 }
 
+#treeMenuList {
+  position: absolute;
+  display: none;
+}
+
+    #treeMenuList li {
+        list-style-type: none;
+        display: inline;
+    }
+
 .serviceInfoSection:before {
     display: block;
     content: " ";
@@ -91,6 +101,10 @@ table thead tr {
 .infoPanelLoading {
     height: 23px;
     margin-bottom: 0px;
+}
+
+.glyphicon {
+  top: 0px;
 }
 
 .glyphiconRed {
